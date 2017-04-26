@@ -134,6 +134,15 @@ class Dojo(object):
         self.people.append(new_person)
         self.success_added_person(new_person, wants_space)
 
+    def success_added_person(self, new_person, wants_space):
+        """Success message when person has been successfully added"""
+        print("You have successfully added the following person:")
+        print("Name: " + new_person.name + " | Employee ID: " + \
+              str(new_person.emp_id) + \
+              "\nJob Type: " + new_person.job_type + \
+              " | Wants Space?: " + wants_space)
+        print(spacer)
+
 
 if __name__ == '__main__':
    arguments = docopt(__doc__)
