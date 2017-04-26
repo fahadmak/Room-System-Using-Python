@@ -37,7 +37,10 @@ class Dojo(object):
 
 
     def create_room(self, args):
-        """Create new room(s)"""
+        """
+        usage: create room <room_name>
+
+        """
 
         print(spacer)
 
