@@ -2,7 +2,6 @@
 Usage:
     dojo create_room (Living|Office) <room_name>...
     dojo add_person <first_name> <last_name> (Fellow|Staff) [<wants_space>]
-
 Options:
     -h --help     Show this screen.
     -i --interactive  Interactive Mode
@@ -10,10 +9,9 @@ Options:
 """
 import random
 from rooms import Office, Living
-from person import Person
 from staff import Staff
 from fellow import Fellow
-from Docopt import docopt
+from docopt import docopt
 
 spacer = " "
 
@@ -39,7 +37,6 @@ class Dojo(object):
     def create_room(self, args):
         """
         usage: create room <room_name>
-
         """
 
         print(spacer)
@@ -148,4 +145,4 @@ class Dojo(object):
 
 
 if __name__ == '__main__':
-   arguments = docopt(__doc__)
+    arguments = docopt(__doc__)
