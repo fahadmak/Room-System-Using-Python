@@ -63,6 +63,27 @@ class Dojo(object):
                   + new_room_.room_type)
         print(spacer)
 
+    def check_vacant_rooms(self):
+        """Add vacant rooms to lists; remove full ones from lists"""
+        for office in self.offices:
+            if len(office.occupants) < office.capacity:
+                if office not in self.vacant_offices:
+                    self.vacant_offices.append(office)
+                    self.vacant_rooms.append(office)
+            elif len(office.occupants) >= office.capacity:
+                if office in self.vacant_offices:
+                    self.vacant_offices.remove(office)
+                    self.vacant_rooms.remove(office)
+        for livingspace in self.livingspaces:
+            if len(livingspace.occupants) < livingspace.capacity:
+                if livingspace not in self.vacant_livingspaces:
+                    self.vacant_livingspaces.append(livingspace)
+                    self.vacant_rooms.append(livingspace)
+            elif len(livingspace.occupants) >= livingspace.capacity:
+                if livingspace in self.vacant_livingspaces:
+                    self.vacant_livingspaces.remove(livingspace)
+                    self.vacant_rooms.remove(livingspace)
+
 
 if __name__ == '__main__':
    arguments = docopt(__doc__)
