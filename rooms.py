@@ -1,6 +1,6 @@
 class Room(object):
     """
-    Creates a Room object. Classes Office and Living inherit from it
+    Creates a Room object. Classes Office and Living inherit from it using inheritance
     """
     def __init__(self, name):
         self.occupants = []
