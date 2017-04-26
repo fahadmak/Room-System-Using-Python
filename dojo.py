@@ -35,7 +35,34 @@ class Dojo(object):
         self.staff = []
         self.allocated_staff = []
 
-   
+
+    def create_room(self, args):
+        """Create new room(s)"""
+
+        print(spacer)
+
+        new_rooms = []
+        for room in args["<room_name>"]:
+            if room.lower() in [r.name.lower() for r in self.rooms]:
+                print("One or more rooms you tried to create already exist! " \
+                      "Please try again.")
+                print(spacer)
+                return
+            if args["Office"]:
+                new_room = Office(room)
+                self.offices.append(new_room)
+            elif args["Living"]:
+                new_room = Living(room)
+                self.livingspaces.append(new_room)
+            self.check_vacant_rooms()
+            self.rooms.append(new_room)
+            new_rooms.append(new_room)
+        print("You have successfully added the following rooom(s):")
+        for new_room_ in new_rooms:
+            print("Name: " + ''.join(new_room_.name) + " | Type: " \
+                  + new_room_.room_type)
+        print(spacer)
+
 
 if __name__ == '__main__':
    arguments = docopt(__doc__)
