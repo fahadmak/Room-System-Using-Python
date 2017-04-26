@@ -1,6 +1,7 @@
 from person import Person
 
 class Fellow(Person):
+    #subclass for person
 
     job_type = "Fellow"
 
