@@ -1,6 +1,6 @@
 import unittest
 import os
-from models.dojo import Dojo
+from dojo import Dojo
 from unittest import unittest
 
 
