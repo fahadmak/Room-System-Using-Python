@@ -1,7 +1,7 @@
 import unittest
 import os
-from models.dojo import Dojo
-from unittest import unittest
+from dojo import Dojo
+
 
 
 class TestDojo(unittest.TestCase):
@@ -111,8 +111,7 @@ class TestDojo(unittest.TestCase):
         self.assertEqual(2, len(self.test_dojo.vacant_offices))
         self.assertEqual(3, len(self.test_dojo.vacant_rooms))
 
-        if __name__ == '__main__':
-
-            unittest.main()
+if __name__ == '__main__':
+    unittest.main()
 
     
