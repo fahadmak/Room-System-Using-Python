@@ -1,6 +1,6 @@
 import unittest
 import os
-from dojo import Dojo
+from models.dojo import Dojo
 from unittest import unittest
 
 
@@ -85,7 +85,31 @@ class TestDojo(unittest.TestCase):
         self.assertEqual(6, len(self.test_dojo.rooms))
         self.assertEqual(3, len(self.test_dojo.offices))
 
-    
+    def test_add_person(self):
+        """Test addition of people"""
+        #  Test Fellow and Test Staff from setup() added to relevant lists
+        self.assertEqual(2, len(self.test_dojo.people))
+        self.assertEqual(1, len(self.test_dojo.fellows))
+        self.assertEqual(1, len(self.test_dojo.staff))
+
+        """Test allocation of those who want space"""
+        # Check that people have been appended to rooms' lists of occupants
+        self.assertEqual(2, len(self.officea.occupants))
+
+    def test_vacant_offices(self):
+        """Test that vacant rooms are added to relevant list"""
+        # Add office
+        self.test_dojo.create_room({
+            "<room_name>": ["OfficeB"],
+            "Living": False,
+            "Office": True
+        })
+
+        self.test_dojo.check_vacant_rooms()
+
+        # Check if OfficeB has been appended to relevant lists
+        self.assertEqual(2, len(self.test_dojo.vacant_offices))
+        self.assertEqual(3, len(self.test_dojo.vacant_rooms))
 
         if __name__ == '__main__':
 
