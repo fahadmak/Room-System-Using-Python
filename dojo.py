@@ -84,6 +84,56 @@ class Dojo(object):
                     self.vacant_livingspaces.remove(livingspace)
                     self.vacant_rooms.remove(livingspace)
 
+    def add_person(self, args):
+        """Add new person"""
+        print(spacer)
+        name = args["<first_name>"] + " " + args["<last_name>"]
+        wants_space = "Yes" if args.get("<wants_space>") is "Y" else "No"
+        if wants_space == "No":
+            if args["Staff"]:
+                new_person = Staff(name)
+                self.staff.append(new_person)
+            elif args["Fellow"]:
+                new_person = Fellow(name)
+                self.fellows.append(new_person)
+        else:
+            if self.offices:
+                self.check_vacant_rooms()
+                if not self.vacant_offices:
+                    print("There are no vacant offices at this time.")
+                    print("Please try again later.")
+                    print(spacer)
+                    return
+                if args["Staff"]:
+                    office_choice = random.choice(self.vacant_offices)
+                    new_person = Staff(name)
+                    office_choice.occupants.append(new_person)
+                    self.staff.append(new_person)
+                    self.allocated_staff.append(new_person)
+                    print("You have successfully allocated " + name + \
+                          " of Employee ID " + str(new_person.emp_id) + \
+                          "\nthe following office: " + office_choice.name)
+                    print(spacer)
+                elif args["Fellow"]:
+                    office_choice = random.choice(self.vacant_offices)
+                    new_person = Fellow(name)
+                    office_choice.occupants.append(new_person)
+                    self.fellows.append(new_person)
+                    self.allocated_fellows.append(new_person)
+                    print("You have successfully allocated " + name + \
+                          " of Employee ID " + str(new_person.emp_id) + \
+                          "\nthe following office: " + office_choice.name)
+                    print(spacer)
+                self.allocated_people.append(new_person)
+            else:
+                print("There are no offices in the system.")
+                print("Add one using the create_room command " \
+                      "and try again.")
+                print(spacer)
+                return
+        self.people.append(new_person)
+        self.success_added_person(new_person, wants_space)
+
 
 if __name__ == '__main__':
    arguments = docopt(__doc__)
