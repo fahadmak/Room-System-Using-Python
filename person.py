@@ -6,8 +6,7 @@ class Person(object):
         self.name = name
         self.emp_id = id(self)
 
-    def __repr__(self):
-        return "<Room %s>" % self.name
+  
 
 
 
